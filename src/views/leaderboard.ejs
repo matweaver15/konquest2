@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaderboard</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; background: #f4f6fb; color: #1d2742; }
+      header { max-width: 720px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: space-between; }
+      .brand { font-size: 1.5rem; font-weight: 700; }
+      main { max-width: 720px; margin: 0 auto; background: #fff; padding: 2.5rem; border-radius: 16px; box-shadow: 0 16px 40px rgba(42, 52, 92, 0.15); }
+      h1 { margin-top: 0; font-size: 2rem; }
+      table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+      th, td { text-align: left; padding: 0.75rem 1rem; }
+      th { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6c7892; border-bottom: 1px solid #e2e6f5; }
+      tr:nth-child(even) td { background: #f7f9ff; }
+      tr.highlight td { background: #e6f8f3; color: #074e36; font-weight: 600; }
+      .position { width: 70px; }
+      .actions { display: flex; gap: 0.75rem; }
+      .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.1rem; border-radius: 999px; border: none; font-size: 0.95rem; cursor: pointer; text-decoration: none; }
+      .btn-secondary { background: #eef1ff; color: #2d3b8b; }
+      .btn-secondary:hover { background: #dfe5ff; }
+      .btn-primary { background: #2d5bff; color: #fff; }
+      .btn-primary:hover { background: #2448d1; }
+      .empty { margin-top: 1.5rem; padding: 1.25rem 1.5rem; border-radius: 12px; background: #f5f7ff; color: #4c5a7b; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand">Konquest</div>
+      <div class="actions">
+        <a class="btn btn-secondary" href="/">Home</a>
+        <% if (user) { %>
+          <form method="post" action="/auth/logout">
+            <button class="btn btn-primary" type="submit">Log out</button>
+          </form>
+        <% } else { %>
+          <a class="btn btn-primary" href="/auth/login">Log in</a>
+        <% } %>
+      </div>
+    </header>
+
+    <main>
+      <h1>Leaderboard</h1>
+      <p>Track who has uncovered the most secret keywords. Scores reset whenever the server restarts.</p>
+
+      <% if (!leaderboard.length) { %>
+        <div class="empty">No entries yet. Be the first explorer to find a keyword!</div>
+      <% } else { %>
+        <table>
+          <thead>
+            <tr>
+              <th class="position">#</th>
+              <th>Player</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% leaderboard.forEach(function (entry, index) { %>
+              <tr class="<%= user && entry.id === user.id ? 'highlight' : '' %>">
+                <td class="position"><%= index + 1 %></td>
+                <td><%= entry.username %></td>
+                <td><%= entry.score %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </main>
+  </body>
+</html>

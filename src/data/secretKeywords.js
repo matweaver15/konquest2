@@ -1,0 +1,18 @@
+module.exports = [
+  'keyword',
+  'geospatial',
+  'domain',
+  'address',
+  'location',
+  'validation',
+  'ocado',
+  'point',
+  'lat',
+  'rem',
+  'site',
+  'bucky',
+  'polygon',
+  'addresses',
+  'bing',
+  'google',
+];
