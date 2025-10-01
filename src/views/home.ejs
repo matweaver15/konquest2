@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Konquest Home</title>
+    <title>Kahnquest Home</title>
     <style>
       body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; background: linear-gradient(135deg, #e0e9ff, #f5f9ff); color: #1d2a44; }
       header { display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto 2rem; }
@@ -32,7 +32,7 @@
   </head>
   <body>
     <header>
-      <div class="brand">Konquest</div>
+      <div class="brand">Kahnquest</div>
       <% if (user) { %>
         <form method="post" action="/auth/logout">
           <button class="btn btn-secondary" type="submit">Log out</button>
@@ -88,7 +88,7 @@
 
         <a class="leaderboard-link" href="/leaderboard">View leaderboard →</a>
       <% } else { %>
-        <h1>Start your Konquest</h1>
+        <h1>Start your Kahnquest</h1>
         <p>Create an account to unlock the full experience, or log in if you already have one. Your credentials are validated and sanitized on the server before anything is stored.</p>
         <div class="cta">
           <a class="btn btn-primary" href="/auth/register">Create account</a>
